@@ -1,10 +1,10 @@
 # 🚀 EmpFlow: Employee Management System
-
-<p align="center">
+<p align="right">
   <img src="https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=openjdk" alt="Java 25">
-  <img src="https://img.shields.io/badge/Maven-3.9-red?style=for-the-badge&logo=apache-maven" alt="Maven">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-Modern-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind">
-  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/Framework-Javalin-blue?style=for-the-badge" alt="Javalin">
+  <img src="https://img.shields.io/badge/Build-Maven-red?style=for-the-badge&logo=apache-maven" alt="Maven">
+  <img src="https://img.shields.io/badge/UI-Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind">
+  <img src="https://img.shields.io/badge/Database-JSON/Flat--File-lightgrey?style=for-the-badge" alt="Database">
 </p>
 
 ---
@@ -60,6 +60,7 @@ This project focuses on building a clean and functional system for managing empl
 git clone https://github.com/NexVerix/EmpFlow-Java-System
 cd EmpFlow
 ```
+--- 
 
 ## 🖼️ Interface Preview
 <p align="center">
