@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-slate-50 font-sans">
+    <nav class="bg-white shadow-sm p-4 mb-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-black text-blue-600 tracking-tighter">EMP<span class="text-slate-800">FLOW</span>
+            </h1>
+            <a href="/" class="text-slate-500 hover:text-red-500 font-medium">Logout <i
+                    class="fa-solid fa-right-from-bracket ml-1"></i></a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 p-4">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 h-fit">
+            <h3 class="text-lg font-bold mb-4 text-slate-700">Add New Employee</h3>
+            <form action="/api/add" method="post" class="space-y-3">
+                <input type="text" name="id" placeholder="Employee ID"
+                    class="w-full p-2 border rounded-md outline-none focus:border-blue-500" required>
+                <input type="text" name="name" placeholder="Full Name" class="w-full p-2 border rounded-md outline-none"
+                    required>
+                <input type="text" name="dept" placeholder="Department"
+                    class="w-full p-2 border rounded-md outline-none" required>
+                <input type="text" name="phone" placeholder="Phone Number"
+                    class="w-full p-2 border rounded-md outline-none" required>
+                <textarea name="address" placeholder="Home Address"
+                    class="w-full p-2 border rounded-md outline-none"></textarea>
+                <button
+                    class="w-full bg-blue-600 text-white py-2 rounded-md font-bold hover:bg-blue-700 transition">Save
+                    Employee</button>
+            </form>
+        </div>
+
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-800 text-white text-sm">
+                    <tr>
+                        <th class="p-4">ID</th>
+                        <th class="p-4">Name</th>
+                        <th class="p-4">Dept</th>
+                        <th class="p-4">Phone</th>
+                        <th class="p-4 text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="divide-y divide-slate-100 text-slate-600 text-sm">
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // 1. Fetch the data from the Java server
+        fetch('/api/list')
+            .then(res => res.text())
+            .then(data => {
+                const body = document.getElementById('tableBody');
+
+                // Clear the table first
+                body.innerHTML = '';
+
+                if (!data.trim()) {
+                    body.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-slate-400">No records found.</td></tr>';
+                    return;
+                }
+
+                // 2. Split the text file into lines
+                data.trim().split('\n').forEach(line => {
+                    const [id, name, dept, phone, address] = line.split('|');
+
+                    // 3. THIS IS THE PART YOU WERE ASKING ABOUT:
+                    // We build the row here for every employee found in the file
+                    const row = `
+                    <tr class="hover:bg-blue-50 transition border-b border-slate-100">
+                        <td class="p-4 font-bold text-slate-900">${id}</td>
+                        <td class="p-4">${name}</td>
+                        <td class="p-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold">${dept}</span></td>
+                        <td class="p-4">${phone}</td>
+                        <td class="p-4 text-right">
+                            <form action="/api/delete" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" value="${id}">
+                                <button type="submit" class="text-red-400 hover:text-red-600 p-2" onclick="return confirm('Are you sure you want to delete ${name}?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                `;
+
+                    // 4. Add the row to the table
+                    body.innerHTML += row;
+                });
+            });
+    </script>
+
+</body>
+
+</html>
