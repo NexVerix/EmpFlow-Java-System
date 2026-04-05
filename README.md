@@ -19,7 +19,7 @@ This project focuses on building a clean and functional system for managing empl
 - 🔐 Secure admin authentication (login & signup)
 - 📊 Dynamic dashboard with real-time updates (Fetch API)
 - 🧾 Full CRUD operations for employee management
-- 💾 Persistent data storage using flat-file system
+- 💾 Persistent data storage using json file 
 - 🎨 Modern UI using Tailwind CSS (Glassmorphism design)
 - 📂 Employees data will be saved in `'employees.txt`
 - 🔐 Login/Signup information will be saved in `users.json`
