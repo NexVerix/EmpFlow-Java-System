@@ -1,5 +1,5 @@
 # 🚀 EmpFlow: Employee Management System
-<p align="right">
+<p align="center">
   <img src="https://img.shields.io/badge/Java-25-orange?style=for-the-badge&logo=openjdk" alt="Java 25">
   <img src="https://img.shields.io/badge/Framework-Javalin-blue?style=for-the-badge" alt="Javalin">
   <img src="https://img.shields.io/badge/Build-Maven-red?style=for-the-badge&logo=apache-maven" alt="Maven">
@@ -59,6 +59,15 @@ This project focuses on building a clean and functional system for managing empl
 ```bash
 git clone https://github.com/NexVerix/EmpFlow-Java-System
 cd EmpFlow
+```
+
+### 3. Clean previous builds and compile classes
+```
+mvn clean compile
+```
+### 4. Execute using double-quoted runtime property parameters
+```
+mvn exec:java "-Dexec.mainClass=App"
 ```
 --- 
 
